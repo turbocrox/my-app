@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🎤 AI Voice Assistant PWA
+A voice assistant with offline speech-to-text, optional ChatGPT integration, text-to-speech, and PWA support.
 
-## Getting Started
+Features
+🎙️ Voice Recording - Browser microphone capture
 
-First, run the development server:
+🗣️ Speech-to-Text - Offline Whisper WASM transcription
 
-```bash
+🤖 AI Toggle - Enable/disable ChatGPT with one click
+
+🔊 Text-to-Speech - Browser speech synthesis
+
+📱 PWA - Install as desktop/mobile app
+
+🔄 Offline Mode - Works without internet (except AI)
+
+Quick Setup
+Create project:
+
+bash
+npx create-next-app@latest voice-assistant --typescript --tailwind --eslint
+cd voice-assistant
+Install dependencies:
+
+bash
+npm install @remotion/whisper-web openai next-pwa
+Add API key (optional):
+Create .env.local:
+
+text
+NEXT_PUBLIC_OPENAI_API_KEY=your-openai-key-here
+Update next.config.ts:
+
+typescript
+import withPWA from "next-pwa";
+
+const pwa = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: false,
+});
+
+const nextConfig = {
+  reactStrictMode: true,
+  async headers() {
+    return [{
+      source: '/(.*)',
+      headers: [
+        { key: 'Cross-Origin-Embedder-Policy', value: 'require-corp' },
+        { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+      ],
+    }];
+  },
+};
+
+export default pwa(nextConfig);
+Add public/manifest.json:
+
+json
+{
+  "name": "AI Voice Assistant",
+  "short_name": "VoiceAI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/window.svg", "sizes": "192x192", "type": "image/svg+xml" }
+  ]
+}
+Replace src/pages/index.tsx with the voice assistant code
+
+Run:
+
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Usage
+Toggle AI - Click the AI toggle button (works without API key when disabled)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Record - Click "Start Recording" → speak → "Stop Recording"
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Listen - App transcribes, generates response, and speaks it back
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Browser Support
+Browser	Recording	Transcription	AI	TTS	PWA
+Chrome	✅	✅	✅	⚠️	✅
+Firefox	✅	✅	✅	✅	⚠️
+Edge	✅	✅	✅	✅	✅
+Safari	✅	✅	✅	✅	✅
+Key Files
+text
+voice-assistant/
+├── src/pages/index.tsx     # Main app (AI toggle included)
+├── public/manifest.json    # PWA config
+├── .env.local             # API key (optional)
+├── next.config.ts         # PWA setup
+└── package.json           # Dependencies
+Troubleshooting
+TTS not working (Linux):
 
-## Learn More
+bash
+sudo apt install espeak espeak-data
+No PWA install option:
 
-To learn more about Next.js, take a look at the following resources:
+Check next.config.ts has disable: false
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Restart dev server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+AI not responding:
 
-## Deploy on Vercel
+Check API key in .env.local
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Verify OpenAI credits
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Toggle AI off to use without API
+
+Built with Next.js + TypeScript + Whisper WASM + OpenAI
+
+Asset 1 of 1
