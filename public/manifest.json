@@ -1,21 +1,21 @@
 {
-  "name": "Offline Speech Assistant",
-  "short_name": "VoiceAI",
+  "name": "Voice Assistant",
+  "short_name": "VoiceAI", 
+  "description": "AI-powered voice assistant with Whisper and ChatGPT",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "orientation": "portrait",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/icons/icon-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

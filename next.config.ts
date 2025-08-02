@@ -6,7 +6,7 @@ const pwa = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
+  disable: false, // CHANGE THIS: was probably 'true' or missing
   runtimeCaching: [
     {
       urlPattern: /\/models\/.*$/,
@@ -25,7 +25,6 @@ const pwa = withPWA({
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   
-  // Required headers for @remotion/whisper-web to work properly
   async headers() {
     return [
       {
@@ -49,7 +48,6 @@ const nextConfig: NextConfig = {
       config.output = config.output || {};
       config.output.globalObject = "self";
       
-      // Fix for fs module and other Node.js modules in browser
       config.resolve = config.resolve || {};
       config.resolve.fallback = {
         ...config.resolve.fallback,

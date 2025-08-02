@@ -7,7 +7,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/icons/window.svg" />
         <meta name="theme-color" content="#000000" />
         {/* Add any global fonts, scripts, or meta tags here */}
       </Head>

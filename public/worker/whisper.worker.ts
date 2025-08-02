@@ -17,3 +17,4 @@ self.onmessage = async (e: MessageEvent) => {
     }
   }
 };
+//apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY!,

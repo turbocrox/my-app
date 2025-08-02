@@ -12,6 +12,7 @@
     "@remotion/whisper-web": "4.0.331",
     "next": "15.4.5",
     "next-pwa": "^5.6.0",
+    "openai": "^5.11.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "whisper-wasm": "^0.0.1"
